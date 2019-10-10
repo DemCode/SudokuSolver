@@ -57,18 +57,18 @@ namespace SudokuSolver
             var groupValues = Cells.Where(c => c.IsDefinite()).Select(c => c.Value);
             changed = Cells.Max(c => c.ExceptFromPossibleValues(groupValues)) || changed;
 
-            var unfoundValues = Cells.SelectMany(c => c.PossibleValues).Distinct(); // new List<byte> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            //var unfoundValues = Cells.SelectMany(c => c.PossibleValues).Distinct().ToList(); // new List<byte> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
-            foreach (var i in unfoundValues)
-            {
-                var cells = Cells.Where(c => !c.IsDefinite() && c.PossibleValues.Contains(i));
+            //foreach (var i in unfoundValues)
+            //{
+            //    var filteredCells = Cells.Where(c => !c.IsDefinite() && c.PossibleValues.Contains(i));
                 
-                if (cells.Count() == 1)
-                {
-                    var vals = unfoundValues.Where(v => v != i);
-                    changed = cells.Single().ExceptFromPossibleValues(vals) || changed;
-                }
-            }
+            //    if (filteredCells.Count() == 1)
+            //    {
+            //        var vals = unfoundValues.Where(v => v != i);
+            //        changed = filteredCells.Single().ExceptFromPossibleValues(vals) || changed;
+            //    }
+            //}
 
             return changed;
         }
